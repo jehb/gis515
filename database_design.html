@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "master.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Database Design</title>
+<style type="text/css">
+.style3 {
+	text-align: left;
+}
+.style4 {
+	margin-left: 265px;
+}
+.style5 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+}
+</style>
+<!-- #EndEditable -->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style1 {
+	text-align: center;
+}
+.style2 {
+	border-width: 0px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Begin Container -->
+<div id="container">
+	<!-- Begin Masthead -->
+	<div id="masthead">
+		<a href="index.html">
+		<img alt="" height="66" src="images/logo.gif" width="550" class="style2" /></a>
+	</div>
+	<!-- End Masthead -->
+	<!-- Begin Page Content -->
+	<div id="page_content">
+		<!-- Begin Sidebar -->
+		<div id="sidebar" style="left: 0px; top: 0px; width: 225px">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+
+				<li><a href="database_design.html">Database Design</a></li>
+				<li><a href="sql.html">Structured Query Language (SQL)</a> </li>
+				<li><a href="geodatabase_design.html">Geodatabase Design</a></li>
+				<li><a href="commercial.html">Commercial Web Delivery</a></li>
+				<li><a href="open_source.html">Open Source GIS</a></li>
+				<li><a href="project.html">Comprehensive Project Development</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<!-- End Sidebar -->
+		<!-- Begin Content -->
+		<div id="content" class="style4"><div style="text-align: right; background-color: #cde;">
+				<img alt="" height="143" src="images/banner-piece.jpg" width="507" /></div>
+			<!-- #BeginEditable "content" -->
+			<h2>Database Design</h2>
+			<p>We began our coursework with an introductory look at database 
+			design, and developed an example project involving a fish sampling 
+			database through several stages of the design process.&nbsp; We 
+			first created an entity-relationship (ER) diagram to conceptually 
+			describe our goal, followed by a unified modeling language (UML) 
+			diagram. To assist in the design of these diagrams, we used an open 
+			source computer aided software engineering (CASE) tool called
+			<a href="http://dia-installer.de/">Dia</a>. A script was then used 
+			to generate data definition language (DDL) code from our diagram for 
+			import into an actual database. Some illustration of these steps is 
+			shown below.<br />
+			</p>
+			<p><strong>Key Terminology</strong></p>
+			<p class="style3"><strong><em>Primary Key:</em> </strong>A primary 
+			key is the first field which contains a unique entry in each row of 
+			a table through which that record can be referenced; it allows for 
+			establishing relationships between data stored in different tables 
+			in a database.<br />
+			<strong><em>Foreign Key:</em></strong> A foreign key is a field 
+			which serves in a table as a reference to the primary key in a 
+			different table, allowing an entry to link to a unique row in the 
+			second table.<strong><br />
+			<em>Referential Integrity:</em></strong> Referential integrity is 
+			the principle that enforces the connection between primary and 
+			foreign keys by requiring that a primary key exist in one table 
+			corresponding to the foreign key that references it in another 
+			table. Referential integrity ensures that no foreign keys exist 
+			which reference a non-existent primary key.<br />
+			<strong><em>Database Relationship:</em></strong> A database 
+			relationships link tables together in a meaningful way. A 
+			relationship may be one-to one, one-to-many, or many-to-many, 
+			depending on whether or not a field may show up multiple times in 
+			either the referring or the referenced table.</p>
+			<p>&nbsp;</p>
+			<p><strong>ER Diagram</strong></p>
+			<p>The entity-relationship diagram, shown below, illustrates in 
+			conceptual terms the relationships between the different elements of 
+			our database model.&nbsp; In this model, we see the various 
+			components of each table illustrated as ovals connected to 
+			rectangles, and relationships between tables indicated as connected 
+			diamonds. Items with a double oval are keys, which means that they 
+			are values that we can either use singularly (simple keys) or in 
+			combination (composite keys) to refer to a unique value within the 
+			table and its associated properties. Simple keys are appropriate 
+			when every key corresponds to a unique value - when two or more keys 
+			are necessary to define a unique value, a composite key is 
+			necessary. We are also able to define the direction of the 
+			relationship, and the type, either one-to-one or one-to-many.&nbsp; 
+			Together these elements are referred to as the cardinality of the 
+			relationship.</p>
+			<p class="style1"><a href="images/erdiagram.png">
+			<img alt="" class="style2" height="272" src="images/erdiagram.png" width="477" /></a><br />
+			(click to enlarge)</p>
+			<p class="style3"><strong>UML Diagram</strong></p>
+			<p class="style3">From our ER diagram, we then proceeded to create a 
+			UML diagram of the same conceptual database. As you can see in the 
+			image below, the look of the image has changes somewhat, but we 
+			still preserve the relationships and their cardinality, and the keys 
+			are still defined. What has changed is that we have now given the 
+			elements of our design computer-friendly names that will be used in 
+			the actual code, and we have also defined the data types that we 
+			will use to represent each item in the appropriate table. Deciding 
+			the appropriate data type (strings, numbers, etc.) requires making 
+			decisions about not only how the data is best represented, but what 
+			actions you may wish to take on a piece of data within your program 
+			code. For example, numbers can be added and subtracted, but the same 
+			information represented as a string might be useful if we were 
+			trying to parse or concatenate it within a sentence.</p>
+			<p class="style1"><a href="images/umldiagram.png">
+			<img alt="" class="style2" height="420" src="images/umldiagram.png" width="445" /></a><br />
+			(click to enlarge)</p>
+			<p class="style3"><strong>Data Definition Language (DDL)</strong></p>
+			<p class="style3">Finally, we used a Perl-based script (<a href="http://search.cpan.org/dist/Parse-Dia-SQL/">available 
+			here</a>) to convert from our UML diagram created in Dia to data 
+			definition language, which would allow us to set up our actual SQL 
+			database and then populate it with data. In this course, we used 
+			PostgreSQL for our database engine, but the same concepts apply to 
+			other database tools.&nbsp; The code generated from the above UML 
+			diagram is show below. Some minor modifications had to be made in 
+			order for the code to be valid for execution.</p>
+			<p class="style3"><span class="style5"><strong>-- Parse::SQL::Dia 
+			version 0.16 <br />
+			-- Documentation http://search.cpan.org/dist/Parse-Dia-SQL/ <br />
+			-- Environment Perl 5.012000, C:\strawberry\perl\bin\perl.exe<br />
+			-- Architecture MSWin32-x86-multi-thread <br />
+			-- Target Database postgres <br />
+			-- Input file NPS_fish.dia <br />
+			-- Generated at Wed Feb 1 13:26:37 2012 <br />
+			-- Typemap for postgres not found in input file <br />
+			<br />
+			-- get_constraints_drop <br />
+			--alter table tbl_visits drop constraint SitesHaveVisits ;<br />
+			--alter table tbl_non_gamefish drop constraint 
+			NonGameFishHaveSpecies ;<br />
+			--alter table tbl_gamefish drop constraint GameFishHaveSpecies ;<br />
+			--alter table tbl_non_gamefish drop constraint VisitsHaveNonGameFish 
+			;<br />
+			--alter table tbl_gamefish drop constraint VisitsHaveGameFish ;<br />
+			<br />
+			-- get_permissions_drop <br />
+			<br />
+			-- get_view_drop<br />
+			<br />
+			-- get_schema_drop<br />
+			--drop table tbl_sites;<br />
+			--drop table tbl_species;<br />
+			--drop table tbl_visits;<br />
+			--drop table tbl_gamefish;<br />
+			--drop table tbl_non_gamefish;<br />
+			<br />
+			-- get_smallpackage_pre_sql <br />
+			<br />
+			-- get_schema_create<br />
+			create table tbl_sites (<br />
+			location_id varchar (10) not null,<br />
+			description varchar (255) ,<br />
+			park_code varchar (4) ,<br />
+			utm_x numeric (15,2) ,<br />
+			utm_y numeric (15,2) ,<br />
+			constraint pk_tbl_sites primary key (location_id)<br />
+			) ;<br />
+			create table tbl_species (<br />
+			species_id varchar (10) not null,<br />
+			common_name varchar (50) ,<br />
+			latin_name varchar (50) ,<br />
+			family varchar (50) ,<br />
+			constraint pk_tbl_species primary key (species_id)<br />
+			) ;<br />
+			create table tbl_visits (<br />
+			visit_id varchar (50) not null,<br />
+			date date ,<br />
+			location_id varchar (10) ,<br />
+			project_code varchar (25) ,<br />
+			notes varchar (255) ,<br />
+			visitor varchar (25) ,<br />
+			constraint pk_tbl_visits primary key (visit_id)<br />
+			) ;<br />
+			create table tbl_gamefish (<br />
+			visit_id varchar (50) not null,<br />
+			data_sheet integer not null,<br />
+			species_id varchar (10) not null,<br />
+			run_number integer not null,<br />
+			mass_weight numeric (8,2) ,<br />
+			notes varchar (255) ,<br />
+			constraint pk_tbl_gamefish primary key 
+			(visit_id,data_sheet,species_id,run_number)<br />
+			) ;<br />
+			create table tbl_non_gamefish (<br />
+			visit_id varchar (50) not null,<br />
+			run_number integer not null,<br />
+			species_id varchar (10) not null,<br />
+			species_count numeric (8,2) ,<br />
+			min_length numeric (8,2) ,<br />
+			max_length numeric (8,2) ,<br />
+			mass_weight numeric (8,2) ,<br />
+			mortality numeric (8,2) ,<br />
+			notes varchar (255) ,<br />
+			constraint pk_tbl_non_gamefish primary key 
+			(visit_id,run_number,species_id)<br />
+			) ;<br />
+			<br />
+			-- get_view_create<br />
+			<br />
+			-- get_permissions_create<br />
+			<br />
+			-- get_inserts<br />
+			<br />
+			-- get_smallpackage_post_sql<br />
+			<br />
+			-- get_associations_create<br />
+			alter table tbl_visits add constraint SitesHaveVisits <br />
+			foreign key (location_id)<br />
+			references tbl_sites (location_id) ;<br />
+			alter table tbl_non_gamefish add constraint NonGameFishHaveSpecies
+			<br />
+			foreign key (species_id)<br />
+			references tbl_species (species_id) ;<br />
+			alter table tbl_gamefish add constraint GameFishHaveSpecies <br />
+			foreign key (species_id)<br />
+			references tbl_species (species_id) ;<br />
+			alter table tbl_non_gamefish add constraint VisitsHaveNonGameFish
+			<br />
+			foreign key (visit_id)<br />
+			references tbl_visits (visit_id) ;<br />
+			alter table tbl_gamefish add constraint VisitsHaveGameFish <br />
+			foreign key (visit_id)<br />
+			references tbl_visits (visit_id) ;</strong></span><br />
+			</p>
+			<p class="style3">We connected to our remotely-hosted database via a 
+			tool called <a href="http://www.pgadmin.org/docs/1.8/index.html">
+			PgAdmin III</a> which enabled us to execute the code. The next step 
+			was to populate the tables. An example populated table can be seen 
+			on the <a href="sql.html">SQL page</a> on this site.</p>
+			<p><strong>Reflection</strong></p>
+			<p>While in a production environment I may not go through every step 
+			of the Entity-Relationship design process in such rigid detail as we 
+			did for this class, I think it is incredibly important to understand 
+			the meaning of relationships underlying database design. Unified 
+			Modeling Language and related CASE tools, however, I think are an 
+			incredibly useful tool for database design. Being able to visualize 
+			components in a way that makes components of a database design clear 
+			makes simple projects easier and larger projects possible. And 
+			without a clear visual understanding of how the database is 
+			designed, maintenance and modifcation in the future become 
+			significantly more difficult. Diagrams from CASE tools also make it 
+			much easier to communicate your system design with others who you 
+			may be collaborating with on a givne project. And while it was 
+			beyond the scope of this course, I look forward to extending my 
+			personal understanding of UML to be able to utilize it as a code 
+			generation tool for other languages which I may use in a GIS career, 
+			such as Java and Python. </p>
+			<!-- #EndEditable --></div>
+		<!-- End Content --></div>
+	<!-- End Page Content -->
+	<!-- Begin Footer -->
+	<div id="footer" style="height: 92px">
+		<p class="style1"><a href="http://gis.ncsu.edu/">
+		<img alt="" height="60" src="images/gist.gif" width="153" border="0" /></a><br />
+		Visit the NCSU GIST website.<br />
+		This page copyright &copy; 2012 by Jason Baker. All other copyrights 
+		contained herein belong to their respective owners.</p>
+	</div>
+	<!-- End Footer --></div>
+<!-- End Container -->
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

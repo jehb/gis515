@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "master.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Open Source GIS</title>
+<style type="text/css">
+.style3 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+}
+</style>
+<!-- #EndEditable -->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style1 {
+	text-align: center;
+}
+.style2 {
+	border-width: 0px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Begin Container -->
+<div id="container">
+	<!-- Begin Masthead -->
+	<div id="masthead">
+		<a href="index.html">
+		<img alt="" height="66" src="images/logo.gif" width="550" class="style2" /></a>
+	</div>
+	<!-- End Masthead -->
+	<!-- Begin Page Content -->
+	<div id="page_content">
+		<!-- Begin Sidebar -->
+		<div id="sidebar" style="left: 0px; top: 0px; width: 225px">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+
+				<li><a href="database_design.html">Database Design</a></li>
+				<li><a href="sql.html">Structured Query Language (SQL)</a> </li>
+				<li><a href="geodatabase_design.html">Geodatabase Design</a></li>
+				<li><a href="commercial.html">Commercial Web Delivery</a></li>
+				<li><a href="open_source.html">Open Source GIS</a></li>
+				<li><a href="project.html">Comprehensive Project Development</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<!-- End Sidebar -->
+		<!-- Begin Content -->
+		<div id="content"><div style="text-align: right; background-color: #cde;">
+				<img alt="" height="143" src="images/banner-piece.jpg" width="507" /></div>
+			<!-- #BeginEditable "content" -->
+			<h2>Open Source GIS</h2>
+			<p>In this section of the course, we took a turn away from the ESRI 
+			ArcGIS environment and explored open source solutions for web based 
+			GIS applications. Open source software may not always be as robust 
+			or well supported as its closed source counterparts, but it clearly 
+			is a better option for some situations given its cost (free!), the 
+			availablility of source code, and the strong community that has 
+			grown up around it. While some open source GIS projects are still 
+			playing catch-up, many are now well developed and the gaps in 
+			reliabillity and ease-of-use are quickly eroding.</p>
+			<p><strong>OpenGeo Suite</strong></p>
+			<p>For the projects in this section, we utilized the
+			<a href="http://opengeo.org/products/suite/">OpenGeo Suite</a>, 
+			which is a packaged and commercially supported full stack system 
+			consisting of many different components. On the database side, it 
+			uses PostgreSQL similar to what we had used in ArcGIS Server, except 
+			with PostGIS to enable spatial data.&nbsp; There are a number of 
+			web-based components to support the server-based data.&nbsp; 
+			GeoServer allows for the management of the storage, sharing, 
+			organization, and projection of spatial data within the system.&nbsp; 
+			GeoWebCache, which we did not explore in this course, provides fast 
+			caching services for tile-based map images. GeoEditor is a web-based 
+			interactive GIS system not unlike ArcGIS for the desktop.&nbsp; 
+			GeoExplorer is more oriented towards end users for exploring, rather 
+			than editing, data. Finally, Styler is included as a tool for 
+			definiting the presentation of the data.</p>
+			<p>Most of the work we did revolved around data in New York City, 
+			including streets, census tracts, boroughs, and subway locations, 
+			which we had to load into the GeoServer system and project properly.&nbsp; 
+			Below is a view of this data as displayed in GeoExplorer</p>
+			<p class="style1">&nbsp;<img alt="" height="456" src="images/nyc.png" width="676" /></p>
+			<p><strong>Spatial SQL</strong></p>
+			<p>Just as we had worked with structured query language to help us 
+			answer questions about tabular data, in this unit we explored the 
+			ways that SQL can be used to answer questions about spatial data as 
+			well.&nbsp; The functions available to a spatial SQL system are 
+			somewhat less standardized than the basic tabular SQL query 
+			components we had worked with previously, but the
+			<a href="http://postgis.refractions.net/documentation/manual-1.5SVN/index.html">
+			PostGIS reference</a> provided the information necessary to access 
+			the proper functions in this system. Provided below are some sample 
+			queries and their results, as executed in PgAdmin III.</p>
+			<p>Which subway station has the maximum number of people living 
+			within 300 meters? How many people live there?</p>
+			<p><span class="style3"><strong>SELECT s.name, Sum(c.popn_total) As 
+			sum_pop FROM nyc_census_blocks as c join nyc_subway_stations as s on 
+			ST_DWithin(c.the_geom,s.the_geom,300) GROUP BY s.name ORDER BY 
+			sum_pop DESC;</strong></span></p>
+			<p class="style1">
+			<img alt="" height="262" src="images/s2.png" width="293" /></p>
+			<p><br />
+			Which boroname has the largest area in New York City? What&#39;s its 
+			area in acres?</p>
+			<p><span class="style3"><strong>SELECT boroname as borough, 
+			Sum(ST_Area(the_geom)) / 4047 AS acreage FROM nyc_neighborhoods 
+			GROUP BY nyc_neighborhoods.boroname ORDER BY acreage DESC;</strong></span></p>
+			<p class="style1">
+			<img alt="" height="161" src="images/s3.png" width="320" /><br />
+			</p>
+			<p>Which boroname has the highest population density?</p>
+			<p><span class="style3"><strong>SELECT c.boroname as borough, 
+			Sum(c.popn_total) / Sum(ST_Area(c.the_geom)) * 1000000 AS 
+			popn_per_sqkm FROM nyc_census_blocks as c GROUP BY c.boroname ORDER 
+			BY popn_per_sqkm DESC;</strong></span></p>
+			<p class="style1">
+			<img alt="" height="157" src="images/s4.png" width="441" /></p>
+			<p><br />
+			What are all the streets with a B-train stop within 50 meters?</p>
+			<p><span class="style3"><strong>SELECT DISTINCT st.name FROM 
+			nyc_subway_stations AS s JOIN nyc_streets AS st ON 
+			ST_DWithin(st.the_geom,s.the_geom,50) WHERE strpos(s.routes,&#39;B&#39;) &gt; 0 
+			ORDER BY st.name;</strong></span></p>
+			<p class="style1">
+			<img alt="" height="257" src="images/s5.png" width="277" /></p>
+			<p><br />
+			Which neighborhood has the hightest population density in 
+			nyc_neighborhoods? What&#39;s the <br />
+			hightest population density (in people / km^2)?</p>
+			<p><span class="style3"><strong>SELECT n.name, Sum(c.popn_total) / 
+			(ST_Area(n.the_geom) / 1000000.0) AS popn_per_sqkm FROM 
+			nyc_census_blocks AS c JOIN nyc_neighborhoods AS n ON 
+			ST_Intersects(c.the_geom, n.the_geom) GROUP BY n.name, n.the_geom 
+			ORDER BY popn_per_sqkm DESC;</strong></span></p>
+			<p class="style1">
+			<img alt="" height="251" src="images/s6.png" width="316" /><br />
+			</p>
+			<p><strong>JavaScript &amp; Code Structures</strong></p>
+			<p>Since all of the web-based GIS applications implement their 
+			client-side scripting in JavaScript, we spent a good portion of the 
+			course exploring JavaScript syntax and some of the necessary 
+			libraries which are utilized by GeoExplorer.&nbsp; JavaScript is a 
+			scripting language commonly used in the browser environment to 
+			extend HTML, which has a similar syntax to Java. The libraries we 
+			explored include <a href="http://www.sencha.com/products/extjs">
+			ExtJS</a>, <a href="http://www.geoext.org/">GeoExt</a>, and
+			<a href="http://openlayers.org/">OpenLayers</a>. By using these 
+			tools and libraries in combination, very complex web application 
+			customization is possible. JavaScript is embedded within HTML 
+			directly or linked as an included file, which allows elements on a 
+			webpage to function interactively.</p>
+			<p><strong>OpenLayers</strong></p>
+			<p>After using a few very basic examples to practice with the 
+			JavaScript syntax, our first homework to integrate this technology 
+			with a mapping application was to develop code to display some of 
+			the New York City data being served from our local server 
+			implentations through a simple web interface using OpenLayers. 
+			Though fairly straightforward, this framework can be extended 
+			greatly for additional display and interaction options. We also 
+			repeated the process using the GeoExt library to create the map 
+			frame.</p>
+			<p class="style1">
+			<img alt="" height="506" src="images/nyc2.png" width="628" /></p>
+			<p><strong>GeoExplorer</strong></p>
+			<p>The final piece of this portion of the course was to customize 
+			the GeoExplorer application to include additional functionality. The 
+			first task was to create a button which changed the bounds of the 
+			map to zoom in on the boundaries of the state of North Carolina. The 
+			second was to allow the user to interactively set the center of the 
+			map by entering longitude and latitude coordinates.&nbsp; While not 
+			terribly complex, these customizations are meant to demonstrate the 
+			method for accessing map data and interacting with it on the client 
+			side.&nbsp; Once this is done, the range of possible functions which 
+			could be accomplished through client side mapping are enormous.</p>
+			<p>This is what the map looks like before using either of the tools 
+			I implemented.</p>
+			<p class="style1">
+			<img alt="" height="422" src="images/geo1.png" width="724" /></p>
+			<p>This is the view after clicking on the button to zoom to the 
+			North Carolina boundaries.</p>
+			<p class="style1">
+			<img alt="" height="423" src="images/geo2.png" width="724" /></p>
+			<p>This is the view after entering approximate coordinates for San 
+			José, Costa Rica, which is about (-84, 10).</p>
+			<p class="style1">
+			<img alt="" height="422" src="images/geo3.png" width="724" /></p>
+			<p><strong>Reflection</strong></p>
+			<p>I was particularly glad to have the opportunity to work with some 
+			of the open source based tools, for a number of reasons.&nbsp; I 
+			strongly believe that open source solutions are an important part of 
+			the geospatial software ecosystem. As a long-time Linux user, I was 
+			happy to be able to work with tools that would run natively on a 
+			*nix system. Philosophically, I think it is important for there to 
+			be low-cost options available, both for production environments and 
+			to provide opportunities for the average user to &quot;look under the 
+			hood&quot; if they so choose. By allowing users of software systems 
+			complete access to the underlying source code behind GIS system, it 
+			allows the provider to customize the end user&#39;s experience to the 
+			maximum possible degree, only limited by factors like staff time. 
+			But just as importantly, personally, becoming familiar with this 
+			software may have immediate benefits.&nbsp; While I don&#39;t have the 
+			resources available to acquire an ArcGIS Server license for every 
+			pet project or nonprofit I have wanted to set up a web mapping 
+			application for, a fully open sourced stack like OpenGeo Suite makes 
+			it possible for me to bring GIS access to a larger audience without 
+			software acquisition costs.</p>
+			<!-- #EndEditable --></div>
+		<!-- End Content --></div>
+	<!-- End Page Content -->
+	<!-- Begin Footer -->
+	<div id="footer" style="height: 92px">
+		<p class="style1"><a href="http://gis.ncsu.edu/">
+		<img alt="" height="60" src="images/gist.gif" width="153" border="0" /></a><br />
+		Visit the NCSU GIST website.<br />
+		This page copyright &copy; 2012 by Jason Baker. All other copyrights 
+		contained herein belong to their respective owners.</p>
+	</div>
+	<!-- End Footer --></div>
+<!-- End Container -->
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

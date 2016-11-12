@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "master.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Comprehensive Project Development</title>
+<style type="text/css">
+.style3 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+}
+.style4 {
+	font-family: "Courier New", Courier, monospace;
+}
+.style5 {
+	font-size: small;
+}
+</style>
+<!-- #EndEditable -->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	text-align: center;
+}
+.style2 {
+	border-width: 0px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Begin Container -->
+<div id="container">
+	<!-- Begin Masthead -->
+	<div id="masthead">
+		<a href="index.html">
+		<img alt="" height="66" src="images/logo.gif" width="550" class="style2" /></a>
+	</div>
+	<!-- End Masthead -->
+	<!-- Begin Page Content -->
+	<div id="page_content">
+		<!-- Begin Sidebar -->
+		<div id="sidebar" style="left: 0px; top: 0px; width: 225px">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+
+				<li><a href="database_design.html">Database Design</a></li>
+				<li><a href="sql.html">Structured Query Language (SQL)</a> </li>
+				<li><a href="geodatabase_design.html">Geodatabase Design</a></li>
+				<li><a href="commercial.html">Commercial Web Delivery</a></li>
+				<li><a href="open_source.html">Open Source GIS</a></li>
+				<li><a href="project.html">Comprehensive Project Development</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<!-- End Sidebar -->
+		<!-- Begin Content -->
+		<div id="content"><div style="text-align: right; background-color: #cde;">
+				<img alt="" height="143" src="images/banner-piece.jpg" width="507" /></div>
+			<!-- #BeginEditable "content" -->
+			<h2>Comprehensive Project Development</h2>
+			<p>Our capstone project for this course was a combination of many of 
+			the technologies and processes which were explored in the first half 
+			of the course, and can be read about in more detail on the pages on 
+			this site exploring database design, SQL, geodatabase design, and 
+			commercial web delivery. Given a problem, I developed a solution 
+			from the ground up to meet the exact needs and specification 
+			provided, using ArcGIS Server technology to develop an interactive 
+			geoprocessing application based on ArcSDE/PostgreSQL database 
+			implementation which I designed to serve the underlying data.</p>
+			<p><strong>Problem</strong></p>
+			<p>Due to the black-out of the northeastern United States on August 
+			14, 2003 and Homeland Security issues, the Federal government is 
+			investigating possible locations for new high power transmission 
+			lines to increase the stability of the United States power grid. New 
+			River Gorge National River is being investigated as one possible 
+			location. As part of the investigation, the effects of a new power 
+			transmission line corridor within the park boundary must be 
+			assessed. The resulting environmental impact statement must address 
+			both the natural and cultural resources managed by the park.<br />
+			<br />
+			In order to facilitate the analysis requirements, you are tasked 
+			with developing a web mapping application that can:<br />
+			<ol>
+			<li />Query for specific vertebrate species locations.<br />
+			<li />Buffer existing power transmission lines.<br />
+			<li />Allows managers to propose the location of high power transmission 
+			line.<br />
+			<li />Create a corridor around the proposed transmission line.<br />
+			<li />Determine if a vertebrate monitoring site is within the proposed 
+			corridor.<br />
+			<li />Determine if any culturally sensitive buildings are within the 
+			corridor.<br />
+			<li />Print maps and reports of the analysis.<br /></ol>
+			The application must be intuitive and easy to use for planners not 
+			familiar with operating a spatial information system.<br />
+			<br />
+			<strong>Implementation<br />
+			<br />
+			</strong>The implementation of this project is illustrated below, 
+			including both the final project as well as many of the intermediate 
+			steps taken to develop the solution<br />
+			<br />
+			<strong>Screen capture of web mapping application</strong><br />
+			<br />
+			Below is an overview of the map application. Because of the many 
+			tasks available and the scale of the data, full screen shots of 
+			subsequent views of the application in action are also given. But 
+			this serves as an overview of what the user sees when first 
+			connecting to the map.<br />
+			<br />
+			<img alt="" height="535" src="images/c1.png" width="676" /><br />
+			<br />
+			<strong>Screen capture of task dialog boxes</strong><br />
+			<br />
+			Dialog boxes corresponding to the required tasks are displayed 
+			below. An additional view of the print dialog box can also be seen 
+			in the next section, with populated data.<br />
+			<br />
+			<img alt="" height="620" src="images/c2.png" width="676" /><br />
+			<br />
+			<strong>Task results</strong><br />
+			<br />
+			The “Find Vertebrate Species” tool completes all of the objectives 
+			of requirement one, including spatial location, x/y coordinates, 
+			species name, year, and number of species observed.<br />
+			<br />
+			<img alt="" height="603" src="images/c3.png" width="676" /><br />
+			<br />
+			The application allows the user to display the habitat 
+			characteristics of each vertebrate monitoring location. In this 
+			example, a terrestrial habitat exists at the monitoring location.<br />
+			<br />
+			<img alt="" height="582" src="images/c4.png" width="676" /><br />
+			<br />
+			The user can buffer existing power lines to a distance of their 
+			choosing. Shown here are a section of power lines buffered to 300 
+			meters.<br />
+			<br />
+			<img alt="" height="578" src="images/c5.png" width="676" /><br />
+			<br />
+			The user can draw a new transmission line of their choosing. Shown 
+			here is a Z-shaped transmission line drawn by the author. For some 
+			reason, the user-drawn lines will not consistently stay on the map, 
+			despite specifying “Add to Display” in the corresponding model. 
+			Fortunately, this is less of an issue because the transmission lines 
+			are apparent from the buffer location.<br />
+			<br />
+			<img alt="" height="713" src="images/c6.png" width="676" /><br />
+			<br />
+			And here are the results from the buffering of the user-created 
+			transmission line, with the resultant buildings and vertebrate test 
+			sites affected by the line. Some other layers are turned off for 
+			increased visibility.<br />
+			<br />
+			<img alt="" height="618" src="images/c7.png" width="676" /><br />
+			<br />
+			This is another view of the results of buffering and clipping 
+			result, except zoomed in so that you can see the buildings and 
+			affected sample sites in much greater detail. You can also tell 
+			clearly that the selected building is a contributing feature.<br />
+			<br />
+			<img alt="" height="530" src="images/c8.png" width="676" /><br />
+			<br />
+			This is a duplicate of the previous image, except this time you are 
+			able to see a species affected by the proposed transmission line (a 
+			green salamander) instead of a building. <br />
+			<br />
+			<img alt="" height="529" src="images/c9.png" width="676" /><br />
+			<br />
+			Next, the printing of results. Below is an image illustrating a 
+			selected vertebrate sample site, an affected building, and an 
+			affected species all added to the table of contents.<br />
+			<br />
+			<img alt="" height="719" src="images/c10.png" width="727" /><br />
+			<br />
+			And finally, the print page output, showing the page scrolled down 
+			such that the three sets of tabular results can be read.<br />
+			<br />
+			<img alt="" height="843" src="images/c11.png" width="626" /><br />
+			<br />
+			<strong>Models Used for Geoprocessing Tasks</strong><br />
+			<br />
+			The model for buffering the existing lines was simple and fairly 
+			straightforward.<br />
+			<br />
+			<img alt="" height="308" src="images/c12.png" width="572" /><br />
+			<br />
+			The model for buffering the new lines was considerably more complex.<br />
+			<br />
+			<img alt="" height="340" src="images/c13.png" width="676" /><br />
+			<br />
+			<strong>Dia diagram<br />
+			<br />
+			<img alt="" height="448" src="images/c14.png" width="628" /></strong><br />
+			<br />
+			<strong>DDL and SQL statements</strong><br />
+			<br />
+			<strong>DDL to Create Tables</strong><br />
+			<span class="style5"><strong><br class="style4" />
+			</strong></span><span class="style4"><span class="style5"><strong>-- 
+			Parse::SQL::Dia version 0.16 <br />
+			-- Documentation http://search.cpan.org/dist/Parse-Dia-SQL/ <br />
+			-- Environment Perl 5.012000, C:\strawberry\perl\bin\perl.exe<br />
+			-- Architecture MSWin32-x86-multi-thread <br />
+			-- Target Database postgres <br />
+			-- Input file neri.dia <br />
+			-- Generated at Thu Mar 22 22:04:03 2012 <br />
+			-- Typemap for postgres not found in input file <br />
+			<br />
+			-- get_constraints_drop <br />
+			-- alter table neri_tbl_data drop constraint DataHaveLocations ;<br />
+			-- alter table neri_tbl_data drop constraint DataHaveEvents ;<br />
+			-- alter table neri_tbl_data drop constraint DataHaveSpecies ;<br />
+			<br />
+			-- get_permissions_drop <br />
+			<br />
+			-- get_view_drop<br />
+			<br />
+			-- get_schema_drop<br />
+			-- drop table neri_tbl_species;<br />
+			-- drop table neri_tbl_data;<br />
+			-- drop table neri_tbl_locations;<br />
+			-- drop table neri_tbl_events;<br />
+			<br />
+			-- get_smallpackage_pre_sql <br />
+			<br />
+			-- get_schema_create<br />
+			create table neri_tbl_species (<br />
+			species_id varchar (50) not null,<br />
+			category_id integer ,<br />
+			common_name varchar (50) ,<br />
+			latin_name varchar (50) ,<br />
+			constraint pk_neri_tbl_species primary key (species_id)<br />
+			) ;<br />
+			create table neri_tbl_data (<br />
+			rec_id integer not null,<br />
+			location_id varchar (255) ,<br />
+			event_id varchar (255) ,<br />
+			category integer ,<br />
+			protocol varchar (255) ,<br />
+			species_id varchar (50) ,<br />
+			time_of_day varchar (50) ,<br />
+			individuals integer ,<br />
+			constraint pk_neri_tbl_data primary key (rec_id)<br />
+			) ;<br />
+			create table neri_tbl_locations (<br />
+			location_id varchar (255) not null,<br />
+			location_description varchar (255) ,<br />
+			utm_x numeric (15,5) ,<br />
+			utm_y numeric (15,5) ,<br />
+			habitat varchar (50) ,<br />
+			habitat_description varchar (100) ,<br />
+			constraint pk_neri_tbl_locations primary key (location_id)<br />
+			) ;<br />
+			create table neri_tbl_events (<br />
+			event_id varchar (255) not null,<br />
+			year integer ,<br />
+			constraint pk_neri_tbl_events primary key (event_id)<br />
+			) ;<br />
+			<br />
+			-- get_view_create<br />
+			<br />
+			-- get_permissions_create<br />
+			<br />
+			-- get_inserts<br />
+			<br />
+			-- get_smallpackage_post_sql<br />
+			<br />
+			-- get_associations_create<br />
+			alter table neri_tbl_data add constraint DataHaveLocations <br />
+			foreign key (location_id)<br />
+			references neri_tbl_locations (location_id) ;<br />
+			alter table neri_tbl_data add constraint DataHaveEvents <br />
+			foreign key (event_id)<br />
+			references neri_tbl_events (event_id) ;<br />
+			alter table neri_tbl_data add constraint DataHaveSpecies <br />
+			foreign key (species_id)<br />
+			references neri_tbl_species (species_id) ;<br />
+			</strong></span></span><br />
+			<strong>SQL to Load Data</strong><br />
+			<br />
+			<span class="style3"><strong>-- Load data<br />
+			<br />
+			COPY neri_tbl_events FROM &#39;c:/gis/jebaker3/neri_tbl_events.txt&#39; 
+			Delimiters &#39;,&#39; CSV;<br />
+			COPY neri_tbl_locations FROM 
+			&#39;c:/gis/jebaker3/neri_tbl_locations.txt&#39; Delimiters &#39;,&#39; CSV;<br />
+			COPY neri_tbl_species FROM &#39;c:/gis/jebaker3/neri_tbl_species.txt&#39; 
+			Delimiters &#39;,&#39; CSV;<br />
+			COPY neri_tbl_data FROM &#39;c:/gis/jebaker3/neri_tbl_data.txt&#39; 
+			Delimiters &#39;,&#39; CSV;</strong></span><br />
+			<br />
+			<strong>SQL to Create Vertebrate Inventory View </strong><br />
+			<br />
+			<span class="style3"><strong>-- I used this to create a feature 
+			class containing the inventory<br />
+			-- and also for joining with the sample site data.<br />
+			<br />
+			-- From assignment, data we need for query is:<br />
+			-- a) The spatial location of the plots with background imagery<br />
+			-- b) The X,Y location of the plot<br />
+			-- c) The species name<br />
+			-- d) The year the observation was made<br />
+			-- e) The number of species observed at that location<br />
+			<br />
+			CREATE VIEW neri_v_vertibrate_inventory AS<br />
+			<br />
+			SELECT -- what data do we need?<br />
+			l.utm_x,<br />
+			l.utm_y,<br />
+			l.location_id, -- also including location_id to make joining<br />
+			-- to the sample locations easier<br />
+			-- if I want to go that route.<br />
+			s.common_name, <br />
+			s.latin_name,<br />
+			e.year,<br />
+			d.individuals AS number_of_individuals<br />
+			FROM -- which tables hold this data?<br />
+			neri_tbl_data AS d,<br />
+			neri_tbl_events AS e,<br />
+			neri_tbl_locations AS l,<br />
+			neri_tbl_species AS s<br />
+			WHERE<br />
+			-- link the data table to the locations table<br />
+			d.location_id = l.location_id<br />
+			AND -- link the data table to the events table<br />
+			d.event_id = e.event_id<br />
+			AND -- link the data table to the species table<br />
+			d.species_id = s.species_id<br />
+			ORDER BY -- put this in some sort of order so we can easily look at 
+			it<br />
+			s.common_name</strong></span><br />
+			<br />
+			<strong>PostgreSQL schema and examples of each table</strong><br />
+			<br />
+			Portions relevant to this project are highlighted. Obviously some of 
+			the iXX tables correspond to feature classes in this project, but it 
+			is not easy (or necessary) to tell which are which. Tables with a 
+			neri_tbl_ prefix are strictly tabular data; the others correspond to 
+			feature classes, except for the custom view at the bottom.<br />
+			<br />
+			<strong>neri_tbl_data<br />
+			<br />
+			<img alt="" height="257" src="images/c16.png" width="676" /><br />
+			<br />
+			neri_tbl_events<br />
+			<br />
+			<img alt="" height="376" src="images/c17.png" width="380" /><br />
+			<br />
+			neri_tbl_locations<br />
+			<br />
+			<img alt="" height="308" src="images/c18.png" width="676" /><br />
+			<br />
+			neri_tbl_species<br />
+			</strong><br />
+			Yes, the common name and latin name are switched here, and in the 
+			subsequent view created from this table. I realized this so late 
+			into the process that I opted to correct it in the feature class 
+			created from the view, rather than correct it here.<br />
+			<br />
+			<img alt="" height="375" src="images/c19.png" width="623" /><br />
+			<br />
+			<strong>neri_v_vertebrate_inventory<br />
+			<br />
+			<img alt="" height="410" src="images/c20.png" width="641" /></strong><br />
+			<br />
+			<strong>ArcSDE geodatabase schema</strong><br />
+			<br />
+			Only portions relevant to this project are show. The database also 
+			contains additional data from previous assignments which do not 
+			pertain to NERI. All feature classes were placed in a feature set to 
+			help keep the data organized, but in a production environment, 
+			additional naming conventions may need to be applied or separate 
+			databases should be used.<br />
+			<br />
+			<img alt="" height="296" src="images/c21.png" width="376" />
+			<p><strong>Reflection</strong></p>
+			<p>This project was an opportunity to combine many of the skills 
+			which we had learned separately into a single, comprehensive design. 
+			Rather than providing us with instructions, we were given the 
+			project requirements, and asked to solve the problem using the tools 
+			we had been using previously. This open ended approach helped me 
+			feel quite confident that I can now develop a web-based geospatial 
+			application using ArcGIS Server from the ground up. It also made me 
+			realize that a number of the problems I have found frustrating to 
+			work with in a desktop environment might be more manageable by using 
+			an online application, as I could easily recruit help for running 
+			individual scenarios if there application were set up correctly.</p>
+			<!-- #EndEditable --></div>
+		<!-- End Content --></div>
+	<!-- End Page Content -->
+	<!-- Begin Footer -->
+	<div id="footer" style="height: 92px">
+		<p class="style1"><a href="http://gis.ncsu.edu/">
+		<img alt="" height="60" src="images/gist.gif" width="153" border="0" /></a><br />
+		Visit the NCSU GIST website.<br />
+		This page copyright &copy; 2012 by Jason Baker. All other copyrights 
+		contained herein belong to their respective owners.</p>
+	</div>
+	<!-- End Footer --></div>
+<!-- End Container -->
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

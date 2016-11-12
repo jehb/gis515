@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "master.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Structured Query Language (SQL)</title>
+<style type="text/css">
+.style3 {
+	text-align: left;
+}
+.style5 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+}
+.style6 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	text-align: center;
+}
+.style7 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+	text-align: left;
+}
+</style>
+<!-- #EndEditable -->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.style1 {
+	text-align: center;
+}
+.style2 {
+	border-width: 0px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Begin Container -->
+<div id="container">
+	<!-- Begin Masthead -->
+	<div id="masthead">
+		<a href="index.html">
+		<img alt="" height="66" src="images/logo.gif" width="550" class="style2" /></a>
+	</div>
+	<!-- End Masthead -->
+	<!-- Begin Page Content -->
+	<div id="page_content">
+		<!-- Begin Sidebar -->
+		<div id="sidebar" style="left: 0px; top: 0px; width: 225px">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+
+				<li><a href="database_design.html">Database Design</a></li>
+				<li><a href="sql.html">Structured Query Language (SQL)</a> </li>
+				<li><a href="geodatabase_design.html">Geodatabase Design</a></li>
+				<li><a href="commercial.html">Commercial Web Delivery</a></li>
+				<li><a href="open_source.html">Open Source GIS</a></li>
+				<li><a href="project.html">Comprehensive Project Development</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<!-- End Sidebar -->
+		<!-- Begin Content -->
+		<div id="content"><div style="text-align: right; background-color: #cde;">
+				<img alt="" height="143" src="images/banner-piece.jpg" width="507" /></div>
+			<!-- #BeginEditable "content" -->
+			<h2>Structured Query Language (SQL)</h2>
+			<p>Structured Query Language (SQL) is a computer programming 
+			language designed specifically for working with databases. While it 
+			varies somewhat between implementations, it is universal enough that 
+			it can be used in a variety of environments and systems. We learned 
+			the basics of SQL syntax for populating database tables and 
+			performing queries on the information they hold, which could then be 
+			turned into permanent views for use in applications.</p>
+			<p class="style3"><strong>Populating the Database</strong></p>
+			<p class="style3">After setting up the database template, the next 
+			step was to populate it with data. In our case, the data had been 
+			provided as file of comma delimited values, so the population was 
+			fairly simple. We simply needed to run a line of SQL for each table 
+			in the database, which took the form: <span class="style5"><strong>
+			COPY tbl_name FROM &#39;C:/location/data.txt&#39; Delimiters &#39;,&#39; CSV;</strong></span></p>
+			<p class="style3">Order was important - tables needed to be 
+			populated according to their referential integrity. In other words, 
+			if a table relationship depended on information in another table, 
+			the other table needed to be populated first.&nbsp; Once this was 
+			done, the information in each table could be viewed in PgAdmin III, 
+			and could then be utilized in our applications. A sample table is 
+			below.</p>
+			<p class="style1">
+			<img alt="" height="612" src="images/sampletable.png" width="580" /></p>
+			<p><strong>SQL Syntax and Examples</strong></p>
+			<p>The syntax of structured query language is fairly 
+			straightforward. In its most basic form, to perform a query one 
+			would ask SELECT which_field FROM which_table WHERE 
+			what_things_are_true. The where clause may, for example, link two 
+			tables through a common key by indicating table1.key = table2.key, 
+			or it may filter data by returning data where item1 = true. Other 
+			statements exist for further limiting the data returned, joining it 
+			with other data, or changing the way the returned data is displayed. 
+			Below are some examples, taken from our fish database example, as 
+			well as the output they returned.</p>
+			<p class="style5"><strong>-- a. On what date(s) were the species 
+			with a code of ATS observed? Resultant<br />
+			-- fields should include the species code, common name, Latin name, 
+			and date<br />
+			-- the plot was visited.<br />
+			<br />
+			SELECT -- Which fields do we want to display... <br />
+			DISTINCT tbl_visits.date, -- Only return unique values<br />
+			tbl_species.species_id, <br />
+			tbl_species.common_name, <br />
+			tbl_species.latin_name<br />
+			FROM -- ... from which tables?<br />
+			tbl_species,<br />
+			tbl_non_gamefish,<br />
+			tbl_visits<br />
+			WHERE<br />
+			-- the species is ATS<br />
+			tbl_species.species_id = &#39;ATS&#39;<br />
+			AND -- match species table to non-gamefish <br />
+			tbl_species.species_id = tbl_non_gamefish.species_id<br />
+			AND -- match the non-gamefish table to the vists table<br />
+			tbl_visits.visit_id = tbl_non_gamefish.visit_id<br />
+			<br />
+			-- 3 Records Returned</strong></p>
+			<p class="style6">
+			<img alt="" height="122" src="images/1.png" width="485" /></p>
+			<p class="style5"><strong>-- b. Where and when were the ATS 
+			observed? Resultant fields should include<br />
+			-- the species code, common name, Latin name, date the plot was 
+			visited, and<br />
+			-- the “run” associated with the visit.<br />
+			<br />
+			SELECT -- Which fields do we want to display... <br />
+			tbl_species.species_id, <br />
+			tbl_species.common_name, <br />
+			tbl_species.latin_name, <br />
+			tbl_visits.date,<br />
+			tbl_non_gamefish.run_number,<br />
+			tbl_sites.location_id<br />
+			FROM -- ... from which tables?<br />
+			tbl_species,<br />
+			tbl_non_gamefish,<br />
+			tbl_visits,<br />
+			tbl_sites<br />
+			WHERE<br />
+			-- the species is ATS<br />
+			tbl_species.species_id = &#39;ATS&#39;<br />
+			AND -- match the species table to the non-gamefish table<br />
+			tbl_species.species_id = tbl_non_gamefish.species_id<br />
+			AND -- match the non-gamefish table to the visits table<br />
+			tbl_non_gamefish.visit_id = tbl_visits.visit_id<br />
+			AND -- match the visits table to the sites table<br />
+			tbl_visits.location_id = tbl_sites.location_id<br />
+			<br />
+			-- 6 Records Returned</strong></p>
+			<p class="style6"><strong><br />
+			<img alt="" height="174" src="images/2.png" width="741" /></strong></p>
+			<p class="style5"><strong>-- c. What game fish were observed in 
+			2004? Resultant fields should include<br />
+			-- the common and Latin name, site visit ID, and date.<br />
+			<br />
+			SELECT -- Which fields do we want to display... <br />
+			DISTINCT tbl_visits.visit_id, -- we only really need one return per 
+			site visit<br />
+			tbl_species.common_name,<br />
+			tbl_species.latin_name,<br />
+			tbl_visits.date<br />
+			FROM -- ... from which tables?<br />
+			tbl_species,<br />
+			tbl_gamefish,<br />
+			tbl_visits<br />
+			WHERE<br />
+			-- grab the year from the date and limit it to 2004<br />
+			EXTRACT(year FROM tbl_visits.date) = &#39;2004&#39; <br />
+			AND -- match the gamefish and visit table using visit_id<br />
+			tbl_visits.visit_id = tbl_gamefish.visit_id<br />
+			AND -- match the gamefish and species table using species_id<br />
+			tbl_gamefish.species_id = tbl_species.species_id<br />
+			<br />
+			-- 116 Records Returned</strong></p>
+			<p class="style6"><strong><br />
+			<img alt="" height="186" src="images/3.png" width="540" /></strong></p>
+			<p class="style7"><strong>-- d. What game fish were observed in each 
+			month of 2004 and what are the X,Y<br />
+			-- coordinates. The results should be ordered from January to 
+			December.<br />
+			-- Resultant fields should include the species common and Latin 
+			names, site<br />
+			-- visit ID, site ID, a column for the month of the visit, a column 
+			for the<br />
+			-- year of the visit, and columns for the X and Y coordinates.<br />
+			<br />
+			SELECT -- Which fields do we want to display... <br />
+			DISTINCT tbl_visits.visit_id, tbl_species.common_name, 
+			tbl_species.latin_name, tbl_sites.location_id,<br />
+			-- We can combine the fields above; we don&#39;t need duplicates<br />
+			EXTRACT(month FROM tbl_visits.date),<br />
+			EXTRACT(year FROM tbl_visits.date),<br />
+			tbl_sites.utm_x,<br />
+			tbl_sites.utm_y<br />
+			FROM -- ... from which tables?<br />
+			tbl_species,<br />
+			tbl_gamefish,<br />
+			tbl_visits,<br />
+			tbl_sites<br />
+			WHERE<br />
+			-- grab the year from the date and limit it to 2004<br />
+			EXTRACT(year FROM tbl_visits.date) = &#39;2004&#39; <br />
+			AND -- match the gamefish and visit table using visit_id<br />
+			tbl_visits.visit_id = tbl_gamefish.visit_id<br />
+			AND -- match the gamefish and species table using species_id<br />
+			tbl_gamefish.species_id = tbl_species.species_id<br />
+			AND -- match the sites and visits table using location_id<br />
+			tbl_sites.location_id = tbl_visits.location_id<br />
+			<br />
+			ORDER BY -- sort the results by month<br />
+			EXTRACT(month FROM tbl_visits.date)<br />
+			<br />
+			-- 116 Records Returned</strong></p>
+			<p class="style6"><strong><br />
+			<img alt="" height="197" src="images/4.png" width="949" /><br />
+			</strong></p>
+			<p class="style7"><strong>-- e. When and where were Alewife observed 
+			at least 100 mm in max length?<br />
+			-- Resultant fields should include common name, Latin name, site 
+			visit ID,<br />
+			-- site visit date, maximum length, and column for the X and Y 
+			coordinates.<br />
+			<br />
+			SELECT -- Which fields do we want to display... <br />
+			tbl_species.common_name,<br />
+			tbl_species.latin_name,<br />
+			tbl_visits.visit_id,<br />
+			tbl_visits.date,<br />
+			tbl_non_gamefish.max_length,<br />
+			tbl_sites.utm_x,<br />
+			tbl_sites.utm_y<br />
+			FROM -- ... from which tables?<br />
+			tbl_species,<br />
+			tbl_non_gamefish,<br />
+			tbl_visits,<br />
+			tbl_sites<br />
+			WHERE -- where the common name is Alewife<br />
+			tbl_species.common_name = &#39;Alewife&#39;<br />
+			AND -- where the length is &gt;= 100<br />
+			tbl_non_gamefish.max_length &gt;= 100<br />
+			AND -- match the gamefish and visit table using visit_id<br />
+			tbl_visits.visit_id = tbl_non_gamefish.visit_id<br />
+			AND -- match the gamefish and species table using species_id<br />
+			tbl_non_gamefish.species_id = tbl_species.species_id<br />
+			AND -- match the sites and visits table using location_id<br />
+			tbl_sites.location_id = tbl_visits.location_id<br />
+			<br />
+			-- 2 Records Returned</strong></p>
+			<p class="style6">
+			<img alt="" height="94" src="images/5.png" width="771" /></p>
+			<p>Queries may also be used to build Views, which are essentially 
+			more permanent queries stored within the database. Views are useful 
+			to allow outside programs, such as in our case ArcGIS Server, to 
+			access a particular subset of data the we have built to meet our 
+			needs.&nbsp; By storing the view in the database instead of the 
+			application, it allows a layer of separation between the code and 
+			the underlying database, so that changes can be made to database 
+			structure without affecting the program as long as the view is 
+			updated appropriately, or the view itself may be changed as well.</p>
+			<p><strong>Reflection</strong></p>
+			<p>I had worked previously in SQL in a very minor way prior to 
+			taking this class - typically just modifying queries which had been 
+			written by others in order to attempt to produce the results I 
+			needed. So in my case, learning the language in a more comprehensive 
+			way should prove to be useful, both within the context of my work in 
+			GIS, but also in other web development and database management 
+			components of other projects I have been involved with. 
+			Particularly, I have worked with a number of web content management 
+			systems which utilize MySQL, and understanding how to form complex 
+			queries will be helpful for these projects as well. SQL is clearly a 
+			very powerful tool for turning raw data into useful information, and 
+			the fact that it has remained the predominant database query 
+			language for so many years I think is indicative of its enduring 
+			use.</p>
+			<!-- #EndEditable --></div>
+		<!-- End Content --></div>
+	<!-- End Page Content -->
+	<!-- Begin Footer -->
+	<div id="footer" style="height: 92px">
+		<p class="style1"><a href="http://gis.ncsu.edu/">
+		<img alt="" height="60" src="images/gist.gif" width="153" border="0" /></a><br />
+		Visit the NCSU GIST website.<br />
+		This page copyright &copy; 2012 by Jason Baker. All other copyrights 
+		contained herein belong to their respective owners.</p>
+	</div>
+	<!-- End Footer --></div>
+<!-- End Container -->
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>

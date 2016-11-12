@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "master.dwt" -->
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<!-- #BeginEditable "doctitle" -->
+<title>Commercial Web Delivery</title>
+<style type="text/css">
+.style3 {
+	text-align: left;
+}
+</style>
+<!-- #EndEditable -->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style1 {
+	text-align: center;
+}
+.style2 {
+	border-width: 0px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Begin Container -->
+<div id="container">
+	<!-- Begin Masthead -->
+	<div id="masthead">
+		<a href="index.html">
+		<img alt="" height="66" src="images/logo.gif" width="550" class="style2" /></a>
+	</div>
+	<!-- End Masthead -->
+	<!-- Begin Page Content -->
+	<div id="page_content">
+		<!-- Begin Sidebar -->
+		<div id="sidebar" style="left: 0px; top: 0px; width: 225px">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+
+				<li><a href="database_design.html">Database Design</a></li>
+				<li><a href="sql.html">Structured Query Language (SQL)</a> </li>
+				<li><a href="geodatabase_design.html">Geodatabase Design</a></li>
+				<li><a href="commercial.html">Commercial Web Delivery</a></li>
+				<li><a href="open_source.html">Open Source GIS</a></li>
+				<li><a href="project.html">Comprehensive Project Development</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<!-- End Sidebar -->
+		<!-- Begin Content -->
+		<div id="content"><div style="text-align: right; background-color: #cde;">
+				<img alt="" height="143" src="images/banner-piece.jpg" width="507" /></div>
+			<!-- #BeginEditable "content" -->
+			<h2>Commercial Web Delivery</h2>
+			<p>We explored two different methods for web-based delivery of GIS 
+			maps through an ESRI environment in this course. The first was 
+			through ArcGIS Server, and built upon the work we had done 
+			previously in SQL and database design. The second method was through 
+			ArcGIS.com, which although allowed for less customization and fewer 
+			features, was a simpler system to use and allowed for sharing of 
+			static maps or maps using only external services without the need 
+			for maintaining your own server system. Both systems over 
+			considerable advantages over traditional GIS dissemination systems.&nbsp; 
+			Unlike desktop GIS software, they are much easier to use, and even 
+			someone with no prior GIS background would likely have a relatively 
+			easy time using them. And unlike static maps, whether electronic or 
+			paper-based, they allow for considerably more interaction from the 
+			end user.</p>
+			<p><strong>ArcGIS Server</strong></p>
+			<p>We built upon the work we had done previously in the George 
+			Washington Birthplace National Monument to allow users to 
+			investigate our data in a number of ways, view them in the context 
+			of additional data provided from other sources, and even run their 
+			own analysis. While the web applications created for this course 
+			will likely not exist past the end of the semester, images of these 
+			functional applications are provided below with a basic description 
+			of their functionality.</p>
+			<p><strong>Query &amp; Display Application</strong></p>
+			<p>The application below is the first, and simplest, of those 
+			created for this course. It allows the used to identify fish samples 
+			occurring at various sampling locations found within our site, as 
+			well as various pieces of information which may be of relevance to 
+			the researcher. By using a custom-created view, information from 
+			multiple tables is combined, and only the pieces which are needed 
+			are show. You can also a background image, provided through Bing, 
+			which is an external service integrated into this project. In 
+			additional to simple background imagery, there are a number of 
+			external services from various providers available on the internet 
+			which can easily be incorporated into a project like this to provide 
+			additional information or context.</p>
+			<p class="style1">
+			<img alt="" height="487" src="images/alewife.png" width="628" /></p>
+			<p class="style3"><strong>Geoprocessing Services</strong></p>
+			<p class="style3">Below is the second ArcGIS Server application 
+			created. In this example, a simple geoprocessing service was created 
+			to allow the user to buffer the sampling locations by a set 
+			distance, and then clipped this buffer to the extent of the 
+			waterbodies. This might be useful, for example, to visually analyze 
+			how much water area surrounded each sampling site. Gamefish could 
+			also be search for by weight, allowing greater querying capabilities 
+			to the end user. Finally, a print function was included to allow 
+			users to print copies of their results. All dialog boxes created for 
+			this process are illustrated below.</p>
+			<p class="style1"><a href="images/ss2.png">
+			<img alt="" class="style2" height="363" src="images/ss2.png" width="511" /></a><br />
+			(click to enlarge)</p>
+			<p class="style3">Geoprocessing in the ArcGIS Server environment is 
+			actually quite similar to in the Desktop environment, and we 
+			actually used Model Builder within ArcGIS Desktop to build our model 
+			for analyis. The model for this application is show below.</p>
+			<p class="style1">
+			<img alt="" height="232" src="images/gp2.png" width="628" /></p>
+			<p class="style3"><strong>Interactive Geoprocessing Services</strong></p>
+			<p class="style3">The final project we built in the section of the 
+			course provided a more robust and interactive geoprocessing tool to 
+			the end user. This application was developed to allow the user to 
+			site a potential visitors&#39; center at the George Washington 
+			Birthplace National Monument, while taking into account culturally 
+			significant features which may be disturbed within a given buffer 
+			from the site. Users can draw the potential location, and define the 
+			buffer distance, allowing a much more interactive experience than 
+			our previous application.</p>
+			<p class="style1">&nbsp;<a href="images/screenshot.png"><img alt="" class="style2" height="461" src="images/screenshot.png" width="516" /></a><br />
+			(click to enlarge)</p>
+			<p class="style3">Our geoprocessing model for this application was 
+			considerably more complex than the previous application, but still 
+			fairly easy to follow.</p>
+			<p class="style1"><a href="images/model.png">
+			<img alt="" class="style2" height="216" src="images/model.png" width="533" /></a><br />
+			(click to enlarge)</p>
+			<p class="style3"><strong>ArcGIS.com</strong></p>
+			<p class="style3">Also in this section of the course, we explored 
+			using ArcGIS.com for map sharing.&nbsp; For this assignment, I 
+			created an online map using ArcGIS Online to display information 
+			relevant to George Washington Birthplace National Monument. Included 
+			on the map are the fish inventories and park boundaries served from 
+			virginislands.cnr.ncsu.edu and created in a prior assignment. Fish 
+			inventories are clickable and the user can cycle through all fish 
+			located at each point on the map. Also included is a wetlands 
+			inventory I found through ArcGIS Online, which is similar to the 
+			wetlands layer I had included in a previous assignment as well. I 
+			restricted this service to the types appropriate to the location to 
+			keep the information relevant and the legend concise. I also enabled 
+			popups for this layer, as it allowed each wetland area to be clicked 
+			on to determine area and wetland type.</p>
+			<p class="style3">In addition to these services, I also enabled a 
+			few other features. A bookmark was created at the extent of the park 
+			boundaries so that users can quickly return to this location if they 
+			zoom or pan to other parts of the map. Additionally, an editable 
+			layer was included. This layer, entitled “Places to Photograph,” 
+			highlights some key locations within the park. As others like myself 
+			may be working on this project without ever having visited the site, 
+			this enables users to identify locations that they may wish to 
+			photograph when they are able to visit – either to give context to 
+			maps or reports produced, or simply for pleasure. I included photos 
+			linked from the National Park Service website as examples.</p>
+			<p class="style3">I also experimented with a few other services but 
+			decided not to include them. First, I tried to see if there was a 
+			way to include a public photo feed in KML format, either from Flickr 
+			or Panoramio or a similar service, which I thought might be 
+			interesting to potential visitors. However, I could not get either 
+			service to generate a feed that was localized to the specific area I 
+			was targeting. I also tried to get radar reflectivity, and was 
+			successful with this, but found that at the moment it did not 
+			produce a very interesting map as there were no significant weather 
+			events taking place in the eastern United States during the 
+			timeframe in which the map was being created. I may explore continue 
+			to explore using these services for a different map, though.<br />
+			<br />
+			The map can be accessed
+			<a href="http://www.arcgis.com/home/webmap/viewer.html?webmap=eced6878bc1d408a8c4f9cfb355f8562&amp;extent=-76.9482,38.1742,-76.8763,38.2046">
+			online currently</a>, though the fish inventories service will 
+			likely become unavailable following the conclusion of this course.</p>
+			<p><strong>Reflection</strong></p>
+			<p>When it comes to professional quality GIS software, it is clear 
+			that ESRI is the leader of the pack, and I was glad to have this 
+			opportunity to work with tools which allow me the opportunity to 
+			extend some of the analysis work I had done previously on desktop 
+			software to a wider audience through these delivery mechanisms. I 
+			think that some of the tools available on ArcGIS.com could be 
+			important for introducing a wider audience to GIS and help them 
+			utilize it in a way that is meaningful to their own work. But the 
+			most exciting part for me was using ArcGIS Server to implement 
+			interactive geoprocessing services. So many times, as someone active 
+			in local government I have wished for the ability to empower 
+			individual citizens to test their hypotheses without having to place 
+			the burden on town staff to manuallly run each simulationn.&nbsp; 
+			ArcGIS Server gives that power. For example, Orange County where I 
+			live has been struggling with siting a new landfill for decades now, 
+			with our current landfill set to be closed in just over a year. 
+			Often citizens, elected officials, and advocacy groups come up with 
+			a set of criteria (distance from schools, type of road it would sit 
+			on, distance from population centers, conflicts with environmental 
+			resources) that they want to prioritize, but with no way to see 
+			which areas might meet their stated desires. A well done application 
+			in ArcGIS Server could allow each of these groups to test their 
+			ideas quickly and easily without prior GIS experience.<br />
+			</p>
+			<!-- #EndEditable --></div>
+		<!-- End Content --></div>
+	<!-- End Page Content -->
+	<!-- Begin Footer -->
+	<div id="footer" style="height: 92px">
+		<p class="style1"><a href="http://gis.ncsu.edu/">
+		<img alt="" height="60" src="images/gist.gif" width="153" border="0" /></a><br />
+		Visit the NCSU GIST website.<br />
+		This page copyright &copy; 2012 by Jason Baker. All other copyrights 
+		contained herein belong to their respective owners.</p>
+	</div>
+	<!-- End Footer --></div>
+<!-- End Container -->
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
